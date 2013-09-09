@@ -17,6 +17,24 @@
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
+    <?php
+        session_start();
+        if (isset($_SESSION['authorized'])){
+    ?>
+        <nav>
+            <form action="index.php" method="post" style="float:left;">
+                <button name="action" type="submit" value="logout">Logout</button>
+            </form>
+            <form action="index.php" method="post" style="float:left;">
+                <button name="action" type="submit" value="upload">Upload</button>
+            </form>
+            <form action="index.php" method="post">
+                <button name="action" type="submit">Move</button>
+            </form>
+        </nav>
+    <?php
+        }
+    ?>
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->

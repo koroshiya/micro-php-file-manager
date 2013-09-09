@@ -1,6 +1,6 @@
 <?php
 
-require_once('./header.html');
+require_once('./header.php');
 $fromIndex = true;
 require_once('./Settings.php');
 
@@ -12,7 +12,6 @@ if ($connection === null || !mysqli_ping($connection)){
     }
 }
 
-session_start();
 if (isset($_SESSION['authorized'])){
     if (isset($_POST['action']) && $_POST['action'] === "logout"){
         $_SESSION['authorized'] = null;
@@ -21,17 +20,18 @@ if (isset($_SESSION['authorized'])){
         echo "Logged out successfully<br />";
         echo "<a href=\"index.php\">Refresh</a>";
         echo "</div>";
+    }elseif(isset($_FILES['upload']) || 
+            isset($_POST['action']) && 
+            $_POST['action'] === "upload"){
+        require_once('./UploadFile.php');
     }else{
-        echo "<form action=\"index.php\" method=\"post\">
-                <button name=\"action\" type=\"submit\" value=\"logout\">Logout</button>
-            </form>";
         if (isset($_POST['file'])){
             require_once('./MoveFile.php');
         }else{
             require_once('./ProcessFile.php');
             echo "<center>";
+            //require_once('./UploadFile.php');
             echo "<form method=\"post\" action=\"index.php\">";
-                        
             $fileArray = getFilesByExtension($basedir, $supportedFormats);
             //$fileArray = getFiles('.');
             if (sizeof($fileArray) > 0){

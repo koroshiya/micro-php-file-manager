@@ -201,4 +201,18 @@ function getDirs($dir){
 	return $fileList;
 }
 
+/**
+ * Finishes a single 
+ *
+ * @param $name Name of upload request. Should be assigned by the calling form.
+ * @param $dest Absolute path to upload file to, including preceeding and trailing slashes.
+ *				eg. '/tmp/' is valid, '/tmp' is not.
+ *
+ * @return True if successful, otherwise false.
+ */
+function uploadFile($name, $dest){
+	return move_uploaded_file ($_FILES[$name]['tmp_name'],
+							"$dest{$_FILES[$name]['name']}");
+}
+
 ?>

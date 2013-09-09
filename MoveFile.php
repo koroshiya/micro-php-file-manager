@@ -155,6 +155,10 @@ if ($exists){
             $combo
             <input type=\"checkbox\" name=\"overwrite\" value=\"yes\" />Overwrite if already exists
         </form>";
+    echo "<form enctype=\"multipart/form-data\" action=\"index.php\" method=\"upload\">
+            <input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"30000\" />
+            File <input type=\"file\" name=\"upload\" />
+        </form>";
          //unzip
          //
 }
