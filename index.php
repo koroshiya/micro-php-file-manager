@@ -36,19 +36,7 @@ if (isset($_SESSION['authorized'])){
         if (isset($_POST['file'])){
             require_once('./MoveFile.php');
         }else{
-            require_once('./ProcessFile.php');
-            echo "<center><form method=\"post\" action=\"index.php\">";
-            $fileArray = getFilesByExtension(basedir, $supportedFormats);
-            //$fileArray = getFiles('.');
-            if (sizeof($fileArray) > 0){
-                echo 'Select the file to move, rename, delete, etc.';
-                foreach ($fileArray as $file) {
-                    echo "<article><button name=\"file\" type=\"submit\" value=\"$file\">$file</button></article>";
-                }
-            }else{
-                echo 'No applicable files in source folder.';
-            }
-            echo "</form></center>";
+            require_once('./ListFile.php');
         }
     }
 }else{

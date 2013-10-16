@@ -20,3 +20,16 @@
     font-size: 1.17em;
     font-weight: bold;
 }
+
+.list-div{
+    max-width:300pt;
+    text-align:left;
+    padding-top:20px;
+}
+
+.edit-button{
+    background: url('../img/editx24.png');
+    height:24px;
+    width:24px;
+    border:none;
+}
