@@ -28,13 +28,13 @@
     ?>
         <nav>
             <form action="index.php" method="post" style="float:left;">
-                <button name="action" type="submit" value="logout">Logout</button>
+                <button name="action" type="submit" class="abutton barform stylebutton blackglossyCSSButtonbutton" value="logout">Logout</button>
             </form>
             <form action="index.php" method="post" style="float:left;">
-                <button name="action" type="submit" value="upload">Upload</button>
+                <button name="action" type="submit" class="abutton barform stylebutton blackglossyCSSButtonbutton" value="upload">Upload</button>
             </form>
             <form action="index.php" method="post">
-                <button name="action" type="submit">Move</button>
+                <button name="action" type="submit" class="abutton barform stylebutton blackglossyCSSButtonbutton">Move</button>
             </form>
         </nav>
     <?php

@@ -21,20 +21,17 @@ require_once('./Database.php');
         }
     }
 
+if (isset($_POST['action']) && $_POST['action'] === "logout"){
+    $_SESSION['authorized'] = null;
+}
+
 require_once('./header.php');
 $fromIndex = true;
 require_once('./Settings.php');
 global $connection;
 
 if (isset($_SESSION['authorized'])){
-    if (isset($_POST['action']) && $_POST['action'] === "logout"){
-        $_SESSION['authorized'] = null;
-        echo "<div style=\"top:50%;margin: -75px 0 0 0px;position:relative;\">";
-        echo "<div align=\"center\">";
-        echo "Logged out successfully<br />";
-        echo "<a href=\"index.php\">Refresh</a>";
-        echo "</div>";
-    }elseif(isset($_FILES['upload']) || 
+    if(isset($_FILES['upload']) || 
             isset($_POST['action']) && 
             $_POST['action'] === "upload"){
         require_once('./UploadFile.php');
