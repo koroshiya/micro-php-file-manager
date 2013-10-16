@@ -11,8 +11,8 @@ if (isset($_SESSION['authorized'])){
     <body class="background">
 
 <!--[if lt IE 9]>
-<br /><br /><p>&emsp;You are using an <b>outdated</b> browser that does not support all of the modern technologies this service uses.<br />
-&emsp;Please see the <a href="index.php?action=compatibility">dashboard compatibility page</a> for more information.
+<br /><br /><p>&emsp;You are using an <b>outdated</b> browser.<br />
+&emsp;To ensure compatibility, please use a <a href="http://browsehappy.com/">modern browser</a>.
 <![endif]-->
 
 		<div id="wrapper">

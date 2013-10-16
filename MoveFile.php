@@ -7,7 +7,7 @@ if (!defined('MPFM_INDEX')){
 
 $exists = false;
 if (isset($_POST['file']) && !is_dir($_POST['file'])) {
-    
+    $dest = dest;
     $absFile = $basedir . "/" . $file;
     $exists = file_exists($absFile);
     if ($exists) {

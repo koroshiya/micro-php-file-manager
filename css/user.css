@@ -1,3 +1,22 @@
-html, body{
-	background:lightgray;
+.upload-button{
+    width:100pt;
+    border-radius: 9pt;
+    box-shadow: 4pt;
+}
+
+.upload-form{
+    text-align:left;
+    margin-left:auto;
+    margin-right:auto;
+    max-width:300pt;
+    height:200pt;
+    padding:20pt;
+    background:#d4dedf;
+    border-radius: 9pt;
+    box-shadow: 4pt;
+}
+
+.h3{
+    font-size: 1.17em;
+    font-weight: bold;
 }

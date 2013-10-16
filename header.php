@@ -14,18 +14,13 @@
 
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/main.min.css">
-        <?php
-        if (!isset($_SESSION['authorized'])){
-            ?><link rel="stylesheet" href="css/login.min.css"><?php
-        }
-        ?>
         <link rel="stylesheet" href="css/user.css">
-        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
-    </head>
-    <body>
+        <script src="js/vendor/modernizr-2.6.2.min.js" async defer></script>
     <?php
         if (isset($_SESSION['authorized'])){
     ?>
+    </head>
+    <body style="margin-top:37px;">
         <nav>
             <form action="index.php" method="post" style="float:left;">
                 <button name="action" type="submit" class="abutton barform stylebutton blackglossyCSSButtonbutton" value="logout">Logout</button>
@@ -37,6 +32,12 @@
                 <button name="action" type="submit" class="abutton barform stylebutton blackglossyCSSButtonbutton">Move</button>
             </form>
         </nav>
+    <?php
+        }else{
+    ?>
+        <link rel="stylesheet" href="css/login.min.css">
+    </head>
+    <body>
     <?php
         }
     ?>
