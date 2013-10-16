@@ -1,6 +1,6 @@
 <?php
 
-if (!$fromIndex){die('You must access this through the root index!');}
+if (!defined('MPFM_INDEX')){die('You must access this through the root index!');}
 
 DEFINE(host, 'localhost');
 DEFINE(dbUser, 'root');

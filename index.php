@@ -1,16 +1,30 @@
 <?php
 
+session_start();
+DEFINE('MPFM_INDEX', true);
+
+require_once('./Database.php');
+    if (isset($_POST['username']) && isset($_POST['password'])){
+        $username = htmlspecialchars($_POST['username']);
+        $password = htmlspecialchars($_POST['password']);
+                
+        global $connection;
+
+        if ($connection === null || !mysqli_ping($connection)){
+            die('Database connection failed during login');
+        }else{
+            $valid = login($username, $password);
+            if ($valid){
+                $_SESSION['authorized'] = $valid == '-2' ? '-2' : $username;
+                $_POST['company'] = "All";
+            }
+        }
+    }
+
 require_once('./header.php');
 $fromIndex = true;
 require_once('./Settings.php');
-
-if ($connection === null || !mysqli_ping($connection)){
-    require_once('./Database.php');
-    connect();
-    if ($connection === null || !mysqli_ping($connection)){
-        die('Could not connect to Database');
-    }
-}
+global $connection;
 
 if (isset($_SESSION['authorized'])){
     if (isset($_POST['action']) && $_POST['action'] === "logout"){

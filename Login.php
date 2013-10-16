@@ -1,68 +1,46 @@
 <?php
 
-if (!$fromIndex){
-	die('You must access this through the root index!');
-}else{
-	echo "<div style=\"top:50%;margin: -75px 0 0 0px;position:relative;\">";
-	if (isset($_POST['username']) && isset($_POST['password'])){
-		$username = htmlspecialchars($_POST['username']);
-		$password = htmlspecialchars($_POST['password']);
-		//echo $username;
-		global $connection;
-		
-		echo "<div align=\"center\">";
-		if ($connection === null || !mysqli_ping($connection)){
-			die('Database connection failed');
-		}else{
-			require_once('Database.php');
-			//$username = quote_smart($username);
-			//$password = quote_smart($password);
-			//echo $username;
-			$valid = login($username, $password);
-			if ($valid){
-				session_start();
-				$_SESSION['authorized'] = 1; //TODO: change depending on user auth level
-				echo "Login successful<br />";
-				echo "<a href=\"index.php\">Return to index</a>";
-				exit;
-			}else{
-				echo "Wrong Username or Password<br />";
-			}
-		}
-		echo "</div>";
+if (!defined('MPFM_INDEX')){die('You must access this through the root index!');}
 
-	}
-
-?>
-
-<table width="300" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#CCCCCC">
-	<tr>
-		<form name="form1" method="post" action="">
-			<td>
-				<table width="100%" border="0" cellpadding="3" cellspacing="1" bgcolor="#FFFFFF">
-					<tr>
-						<td colspan="2"><strong>Member Login</strong></td>
-					</tr>
-					<tr>
-						<td width="78">Username:</td>
-						<td width="294"><input name="username" type="text" id="username" maxlength="30"  size="35"></td>
-					</tr>
-					<tr>
-						<td>Password:</td>
-						<td><input name="password" type="password" id="password" maxlength="20" size="35"></td>
-					</tr>
-					<tr>
-						<td>&nbsp;</td>
-						<td><input type="submit" name="Submit" value="Login"></td>
-					</tr>
-				</table>
-			</td>
-		</form>
-	</tr>
-</table>
-</div>
-<?php
-
+if (isset($_SESSION['authorized'])){
+    $_SESSION['authorized'] = null;
 }
 
 ?>
+
+    <body class="background">
+
+<!--[if lt IE 9]>
+<br /><br /><p>&emsp;You are using an <b>outdated</b> browser that does not support all of the modern technologies this service uses.<br />
+&emsp;Please see the <a href="index.php?action=compatibility">dashboard compatibility page</a> for more information.
+<![endif]-->
+
+		<div id="wrapper">
+
+	<form name="login-form" class="login-form" action="" method="post">
+	
+		<div class="header">
+		<h1>micro-fm Login</h1>
+		<span>Please enter your username and password in the fields below.</span>
+		</div>
+	
+		<div class="content">
+		<input name="username" type="text" class="input username" placeholder="Username" />
+		<div class="user-icon"></div>
+		<input name="password" type="password" class="input password" placeholder="Password" />
+		<div class="pass-icon"></div>
+		</div>
+
+		<div class="footer">
+		<input type="submit" name="submit" value="Login" class="button" />
+		<?php
+			if (isset($_POST['password']) || isset($_POST['username'])){
+				echo "<p style=\"color:red;\">Incorrect username or password!</p>";
+			}
+		?>
+		</div>
+	
+	</form>
+
+</div>
+<div class="gradient"></div>

@@ -1,9 +1,5 @@
 <?php
-//UploadFile.php
-
-if (!$fromIndex){
-	die('You must access this through the root index!');
-}
+if (!defined('MPFM_INDEX')){die('You must access this through the root index!');}
 
 echo "<div style=\"top:50%;margin: -75px 0 0 0px;position:relative;\">";
 

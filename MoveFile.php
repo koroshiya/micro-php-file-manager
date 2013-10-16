@@ -1,5 +1,5 @@
 <?php
-if (!$fromIndex){
+if (!defined('MPFM_INDEX')){
     die('You must access this through the root index!');
 }elseif (!isset($_SESSION['authorized'])){
     die('Must be logged in to access this page');

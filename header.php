@@ -14,11 +14,16 @@
 
         <link rel="stylesheet" href="css/normalize.min.css">
         <link rel="stylesheet" href="css/main.min.css">
+        <?php
+        if (!isset($_SESSION['authorized'])){
+            ?><link rel="stylesheet" href="css/login.min.css"><?php
+        }
+        ?>
+        <link rel="stylesheet" href="css/user.css">
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
     <?php
-        session_start();
         if (isset($_SESSION['authorized'])){
     ?>
         <nav>
