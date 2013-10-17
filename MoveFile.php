@@ -4,7 +4,7 @@ if (!defined('MPFM_INDEX')){
 }elseif (!isset($_SESSION['authorized'])){
     die('Must be logged in to access this page');
 }
-
+?><div style="padding-top:20pt;"><div class="move-form"><?php
 $exists = false;
 if (isset($_POST['file']) && !is_dir($_POST['file'])) {
     $dest = dest;
@@ -25,15 +25,15 @@ if (isset($_POST['file']) && !is_dir($_POST['file'])) {
                             require_once('ProcessFile.php');
                             if (moveFile($file, $dest, $overwrite)){
                                 $dest .= "/" . basename($file);
-                                echo "Moved $file to $dest<br />";
+                                printError("Moved $file to $dest");
                             }else{
-                                echo "Failed to move $file to $dest<br />";
+                                printError("Failed to move $file to $dest");
                             }
                         }else{
-                            echo "Dir doesn't exist<br />";
+                            printError("Dir doesn't exist");
                         }
                     }else{
-                        echo "No destination specified<br />";
+                        printError("No destination specified");
                     }
                     break;
                 case "copy":
@@ -43,15 +43,15 @@ if (isset($_POST['file']) && !is_dir($_POST['file'])) {
                             require_once('ProcessFile.php');
                             if (copyFile($file, $dest, $overwrite)){
                                 $dest .= "/" . basename($file);
-                                echo "Copied $file to $dest<br />";
+                                printError("Copied $file to $dest");
                             }else{
-                                echo "Failed to copy $file to $dest<br />";
+                                printError("Failed to copy $file to $dest");
                             }
                         }else{
-                            echo "Dir doesn't exist<br />";
+                            printError("Dir doesn't exist");
                         }
                     }else{
-                        echo "No destination specified<br />";
+                        printError("No destination specified");
                     }
                     break;
                 case "delete":
@@ -59,9 +59,9 @@ if (isset($_POST['file']) && !is_dir($_POST['file'])) {
                     require_once('ProcessFile.php');
                     
                     if (deleteFile($file)){
-                        echo "File deleted successfully<br />";
+                        printError("File deleted successfully");
                     }else{
-                        echo "File could not be deleted<br />";
+                        printError("File could not be deleted");
                     }
                     break;
                 case "rename":
@@ -69,45 +69,44 @@ if (isset($_POST['file']) && !is_dir($_POST['file'])) {
                         $newName = basename($_POST['newName']);
                         require_once('ProcessFile.php');
                         if (renameFile($file, $newName, $overwrite)){
-                            echo "Rename successful<br />";
+                            printError("Rename successful");
                         }else{
-                            echo "Rename failed<br />";
+                            printError("Rename failed");
                         }
                     }else{
-                        echo "Rename failed<br />";
+                        printError("Rename failed");
                     }
                     break;
                 default:
                     break;
             }
-            echo "<a href=\"index.php\">Return to index</a>";
-            exit;
+            //echo "<a href=\"index.php\">Return to index</a>";
+            //exit;
         }/*else{
             //echo 'No action specified';
         }*/
 
     }else{
-        echo "File doesn't exist";
-        echo "<a href=\"index.php\">Return to index</a>";
-        exit;
+        printError("File doesn't exist");
+        //echo "<a href=\"index.php\">Return to index</a>";
+        //exit;
     }
 
 }else{
-    echo "No file specified<br />";
-    echo "<a href=\"index.php\">Return to index</a>";
-    exit;
+    printError("No file specified");//<a href=\"index.php\">Return to index</a>";
+    //exit;
 }
 
-require_once('ProcessFile.php');
+require_once('./ProcessFile.php');
 if ($exists){
     $destDirList = getDirs($dest);
     $file = basename($file);
     //create combobox filled with possible dirs
-    echo "<br />";
-    echo "Source base directory: <b>$basedir</b><br />";
-    echo "Target base directory: <b>$dest</b><br />";
-    echo "File to manipulate: <b>$file</b><br />";
-    echo "<br />";
+    echo "<br />
+        Source base directory: <b>$basedir</b><br />
+        Target base directory: <b>$dest</b><br />
+        File to manipulate: <b>$file</b><br />
+        <br />";
     
     $fattrs = stat($basedir . $file);
     $fSize = $fattrs[size];
@@ -130,36 +129,44 @@ if ($exists){
     }
     $combo .= "</select>";
     //echo $combo;
-    echo "<form action=\"index.php\" method=\"post\">
-            <button name=\"action\" type=\"submit\" value=\"move\" style=\"width:100pt;\">Move file</button>
-            <input type=\"text\" name=\"file\" value=\"$file\" readonly />
-            to
-            $combo
-            <input type=\"checkbox\" name=\"overwrite\" value=\"yes\" />Overwrite if already exists
-        </form>";
-    echo "<form action=\"index.php\" method=\"post\">
-            <button name=\"action\" type=\"submit\" value=\"delete\" style=\"width:100pt;\">Delete file</button>
-            <input type=\"text\" name=\"file\" value=\"$file\" readonly />
-        </form>";
-    echo "<form action=\"index.php\" method=\"post\">
-            <button name=\"action\" type=\"submit\" value=\"rename\" style=\"width:100pt;\">Rename</button>
-            <input type=\"text\" name=\"file\" value=\"$file\" readonly />
-            to
-            <input type=\"text\" name=\"newName\" value=\"\" maxlength=\"30\" />
-            <input type=\"checkbox\" name=\"overwrite\" value=\"yes\" />Overwrite if already exists
-         </form>";
-    echo "<form action=\"index.php\" method=\"post\">
-            <button name=\"action\" type=\"submit\" value=\"copy\" style=\"width:100pt;\">Copy file</button>
-            <input type=\"text\" name=\"file\" value=\"$file\" readonly />
-            to
-            $combo
-            <input type=\"checkbox\" name=\"overwrite\" value=\"yes\" />Overwrite if already exists
-        </form>";
-    echo "<form enctype=\"multipart/form-data\" action=\"index.php\" method=\"upload\">
+    $input = '<input type="text" name="file" value="'.$file.'" readonly />';
+    ?>
+    <form action="index.php" method="post">
+        <button name="action" type="submit" value="move" class="upload-button">Move file</button>
+        <?php echo $input; ?>
+        to
+        <?php echo $combo;?>
+        <input type="checkbox" name="overwrite" value="yes" />Overwrite if already exists
+    </form>
+
+    <form action="index.php" method="post">
+        <button name="action" type="submit" value="delete" class="upload-button">Delete file</button>
+        <?php echo $input; ?>
+    </form>
+    <form action="index.php" method="post">
+        <button name="action" type="submit" value="rename" class="upload-button">Rename</button>
+        <?php echo $input; ?>
+        to
+        <input type="text" name="newName" value="" maxlength="30" />
+        <input type="checkbox" name="overwrite" value="yes" />Overwrite if already exists
+    </form>
+    <form action="index.php" method="post">
+        <button name="action" type="submit" value="copy" class="upload-button">Copy file</button>
+        <?php echo $input; ?>
+        to
+        <?php echo $combo;?>
+        <input type="checkbox" name="overwrite" value="yes" />Overwrite if already exists
+    </form>
+    <?php
+    /*echo "<form enctype=\"multipart/form-data\" action=\"index.php\" method=\"upload\">
             <input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"30000\" />
             File <input type=\"file\" name=\"upload\" />
-        </form>";
+        </form>";*/
          //unzip
          //
 }
+function printError($error){
+    echo "<span class=\"error\">$error</span><br />";
+}
 ?>
+</div></div>
