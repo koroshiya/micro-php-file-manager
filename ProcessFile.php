@@ -101,7 +101,7 @@ function validDir($dir){
  */
 function renameFile($file, $newName, $force){
 	$newName = dirname($file) . "/" . basename($newName);
-	if (!(!$force && file_exists($newName))){
+	if ($force || !file_exists($newName)){
 		if (validFile($file) && validFilename($newName)){
 			if (rename($file, $newName)){
 				return true;
@@ -123,7 +123,7 @@ function renameFile($file, $newName, $force){
 function validFilename($file){
 	$regex = "/^[^\/\?\*:;{}\\\]+\.[^\/\?\*:;{}\\\]+$/";
 	if (!preg_match($regex, basename($file))){
-		echo "Invalid filename<br />";
+		//echo "Invalid filename<br />";
 		return false;
 	}
 	return true;

@@ -4,18 +4,25 @@ if (!defined('MPFM_INDEX')){
 }elseif (!isset($_SESSION['authorized'])){
     die('Must be logged in to access this page');
 }
-?><div style="padding-top:20pt;"><div class="move-form"><?php
+function printError($message){
+    echo "<br /><center><span class=\"error\">".$message."</span></center>";
+}
+function finishPrematurely($message){
+    echo "<br /><center><h3>".$message."</h3></center>";
+    require_once('./ListFile.php');
+    exit;
+}
 $exists = false;
 if (isset($_POST['file']) && !is_dir($_POST['file'])) {
     $dest = dest;
-    $absFile = $basedir . "/" . $file;
+    $absFile = basedir . "/" . $file;
     $exists = file_exists($absFile);
     if ($exists) {
         $file = basename($_POST['file']);
 
         if (isset($_POST['action'])){
             $action = $_POST['action'];
-            $file = $basedir . $file;
+            $file = basedir . $file;
             $overwrite = (isset($_POST['overwrite']) && $_POST['overwrite'] === "yes");
             switch ($action){
                 case "move":
@@ -25,12 +32,12 @@ if (isset($_POST['file']) && !is_dir($_POST['file'])) {
                             require_once('ProcessFile.php');
                             if (moveFile($file, $dest, $overwrite)){
                                 $dest .= "/" . basename($file);
-                                printError("Moved $file to $dest");
+                                finishPrematurely("Moved $file to $dest");
                             }else{
                                 printError("Failed to move $file to $dest");
                             }
                         }else{
-                            printError("Dir doesn't exist");
+                            printError("Directory doesn't exist");
                         }
                     }else{
                         printError("No destination specified");
@@ -43,12 +50,12 @@ if (isset($_POST['file']) && !is_dir($_POST['file'])) {
                             require_once('ProcessFile.php');
                             if (copyFile($file, $dest, $overwrite)){
                                 $dest .= "/" . basename($file);
-                                printError("Copied $file to $dest");
+                                finishPrematurely("Copied $file to $dest");
                             }else{
                                 printError("Failed to copy $file to $dest");
                             }
                         }else{
-                            printError("Dir doesn't exist");
+                            printError("Directory doesn't exist");
                         }
                     }else{
                         printError("No destination specified");
@@ -59,7 +66,7 @@ if (isset($_POST['file']) && !is_dir($_POST['file'])) {
                     require_once('ProcessFile.php');
                     
                     if (deleteFile($file)){
-                        printError("File deleted successfully");
+                        finishPrematurely("File deleted successfully");
                     }else{
                         printError("File could not be deleted");
                     }
@@ -69,7 +76,7 @@ if (isset($_POST['file']) && !is_dir($_POST['file'])) {
                         $newName = basename($_POST['newName']);
                         require_once('ProcessFile.php');
                         if (renameFile($file, $newName, $overwrite)){
-                            printError("Rename successful");
+                            finishPrematurely("Rename successful");
                         }else{
                             printError("Rename failed");
                         }
@@ -99,16 +106,19 @@ if (isset($_POST['file']) && !is_dir($_POST['file'])) {
 
 require_once('./ProcessFile.php');
 if ($exists){
+    
+    echo "<div style=\"padding-top:20pt;\"><div class=\"move-form\">";
+    
     $destDirList = getDirs($dest);
     $file = basename($file);
     //create combobox filled with possible dirs
     echo "<br />
-        Source base directory: <b>$basedir</b><br />
-        Target base directory: <b>$dest</b><br />
+        Source base directory: <b>".basedir."</b><br />
+        Target base directory: <b>".dest."</b><br />
         File to manipulate: <b>$file</b><br />
         <br />";
     
-    $fattrs = stat($basedir . $file);
+    $fattrs = stat(basedir . $file);
     $fSize = $fattrs[size];
     $unit = 'Bytes';
     if ($fSize > 1024 * 1024){
@@ -130,7 +140,7 @@ if ($exists){
     $combo .= "</select>";
     //echo $combo;
     $input = '<input type="text" name="file" value="'.$file.'" readonly />';
-    ?>
+?>
     <form action="index.php" method="post">
         <button name="action" type="submit" value="move" class="upload-button">Move file</button>
         <?php echo $input; ?>
@@ -147,8 +157,8 @@ if ($exists){
         <button name="action" type="submit" value="rename" class="upload-button">Rename</button>
         <?php echo $input; ?>
         to
-        <input type="text" name="newName" value="" maxlength="30" />
-        <input type="checkbox" name="overwrite" value="yes" />Overwrite if already exists
+        <input type="text" name="newName" value="" maxlength="30" style="width:142pt;" />
+        <input type="checkbox" name="overwrite" value="yes"/>Overwrite if already exists
     </form>
     <form action="index.php" method="post">
         <button name="action" type="submit" value="copy" class="upload-button">Copy file</button>
@@ -157,16 +167,13 @@ if ($exists){
         <?php echo $combo;?>
         <input type="checkbox" name="overwrite" value="yes" />Overwrite if already exists
     </form>
-    <?php
+<?php
     /*echo "<form enctype=\"multipart/form-data\" action=\"index.php\" method=\"upload\">
             <input type=\"hidden\" name=\"MAX_FILE_SIZE\" value=\"30000\" />
             File <input type=\"file\" name=\"upload\" />
         </form>";*/
          //unzip
          //
-}
-function printError($error){
-    echo "<span class=\"error\">$error</span><br />";
 }
 ?>
 </div></div>
