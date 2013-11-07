@@ -5,7 +5,7 @@ echo "<div style=\"top:50%;margin: -110pt 0 0 0px;position:relative;\">";
 
 if (isset($_FILES['upload'])) {
 	require_once('./ProcessFile.php');
-	if (uploadFile('upload', '/tmp/')){
+	if (uploadFile('upload', uploaddir)){
 		echo '<p><em>File uploaded successfully!</em></p>';
 	}else{
 		echo 'File upload failed';

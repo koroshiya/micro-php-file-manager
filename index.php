@@ -3,6 +3,11 @@
 session_start();
 DEFINE('MPFM_INDEX', true);
 
+/*
+    ini_set ("display_errors", "1");
+    error_reporting(E_ALL);
+*/
+
 require_once('./Database.php');
 if (isset($_POST['username']) && isset($_POST['password'])){
     $username = htmlspecialchars($_POST['username']);

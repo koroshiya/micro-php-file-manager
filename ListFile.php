@@ -9,7 +9,10 @@ $fileArray = getFilesByExtension(basedir, $supportedFormats);
 if (sizeof($fileArray) > 0){
 	echo "Select the file to move, rename, delete, etc.<br /><br />";
     foreach ($fileArray as $file) {
-    	echo "<article><button name=\"file\" type=\"submit\" value=\"$file\" class=\"edit-button\"></button>$file</article>";
+    	echo "<article>
+    			<button name=\"file\" type=\"submit\" value=\"$file\" class=\"edit-button\"></button>
+    			$file
+    		</article>";
     }
 }else{
 	echo 'No applicable files in source folder.';
