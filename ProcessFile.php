@@ -163,7 +163,7 @@ function getFilesByExtension($dir, $ext){
 	$files = scandir($dir);
 	$fileList = array();
 	foreach ($files as $file) {
-		if (!is_dir($file) && $file[0] != ".") {
+		if (is_file($dir . '/' . $file) && $file[0] != ".") {
 			$file_parts = pathinfo($file);
 			$fileExtension = $file_parts['extension'];
 			if ($ext === null){
