@@ -7,6 +7,8 @@ DEFINE(dbUser, 'root');
 DEFINE(dbPass, 'toor');
 DEFINE(dbName, 'Mover');
 
+DEFINE(loginRequired, false);
+
 DEFINE(supportedFormats, 'zip;rar;html');
 /*
 	Semi-colon separated list of formats of files to search for in source directory.

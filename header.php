@@ -17,14 +17,20 @@
         <link rel="stylesheet" href="css/user.css">
         <script src="js/vendor/modernizr-2.6.2.min.js" async defer></script>
     <?php
-        if (isset($_SESSION['authorized'])){
+        if (isset($_SESSION['authorized']) || !loginRequired){
     ?>
     </head>
     <body style="margin-top:37px;">
         <nav>
+            <?php
+                if (loginRequired){
+            ?>
             <form action="index.php" method="post" style="float:left;">
                 <button name="action" type="submit" class="abutton barform stylebutton blackglossyCSSButtonbutton" value="logout">Logout</button>
             </form>
+            <?php
+                }
+            ?>
             <form action="index.php" method="post" style="float:left;">
                 <button name="action" type="submit" class="abutton barform stylebutton blackglossyCSSButtonbutton" value="upload">Upload</button>
             </form>

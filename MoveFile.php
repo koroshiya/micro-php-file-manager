@@ -1,9 +1,6 @@
 <?php
-if (!defined('MPFM_INDEX')){
-    die('You must access this through the root index!');
-}elseif (!isset($_SESSION['authorized'])){
-    die('Must be logged in to access this page');
-}
+if (!defined('MPFM_INDEX')){die('You must access this through the root index!');}
+
 function printError($message){
     echo "<br /><center><span class=\"error\">".$message."</span></center>";
 }

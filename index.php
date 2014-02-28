@@ -34,7 +34,7 @@ require_once('./header.php');
 require_once('./Settings.php');
 global $connection;
 
-if (isset($_SESSION['authorized'])){
+if (isset($_SESSION['authorized']) || !loginRequired){
     if(isset($_FILES['upload']) || isset($_POST['action']) && $_POST['action'] === "upload"){
         require_once('./UploadFile.php');
     }else{
