@@ -149,7 +149,7 @@ if ($exists){
         <?php echo $input; ?>
         to
         <?php echo $combo;?>
-        <input type="checkbox" name="overwrite" value="yes" />Overwrite if already exists
+        <input type="checkbox" name="overwrite" value="yes" />Overwrite
     </form>
 
     <form action="index.php" method="post">
@@ -161,14 +161,14 @@ if ($exists){
         <?php echo $input; ?>
         to
         <input type="text" name="newName" value="" maxlength="30" style="width:142pt;" />
-        <input type="checkbox" name="overwrite" value="yes"/>Overwrite if already exists
+        <input type="checkbox" name="overwrite" value="yes"/>Overwrite
     </form>
     <form action="index.php" method="post">
         <button name="action" type="submit" value="copy" class="upload-button">Copy file</button>
         <?php echo $input; ?>
         to
         <?php echo $combo;?>
-        <input type="checkbox" name="overwrite" value="yes" />Overwrite if already exists
+        <input type="checkbox" name="overwrite" value="yes" />Overwrite
     </form>
 <?php
     /*echo "<form enctype=\"multipart/form-data\" action=\"index.php\" method=\"upload\">
