@@ -9,6 +9,7 @@ DEFINE(dbName, 'Mover');
 
 DEFINE(loginRequired, true);
 DEFINE(displayFolders, true);
+DEFINE(showFullDirectoryPaths, false); //If false, display subsection. eg. /home/user/mphpfm/target/ becomes mphpfm/target/
 
 DEFINE(supportedFormats, 'zip;rar;html');
 /*

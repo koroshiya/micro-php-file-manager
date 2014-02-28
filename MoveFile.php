@@ -110,8 +110,8 @@ if ($exists){
     $file = basename($file);
     //create combobox filled with possible dirs
     echo "<br />
-        Source base directory: <b>".basedir."</b><br />
-        Target base directory: <b>".dest."</b><br />
+        Source base directory: <b>".(showFullDirectoryPaths ? basedir : basename(basedir))."</b><br />
+        Target base directory: <b>".(showFullDirectoryPaths ? dest : basename(dest))."</b><br />
         File to manipulate: <b>$file</b><br />
         <br />";
     
