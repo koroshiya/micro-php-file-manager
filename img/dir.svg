@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf8" standalone="no"?>
+<svg viewBox="0 0 280 440" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<filter height="1.15955" id="filter5354" width="1.31251" x="-.15625" y="-.07978">
+<feGaussianBlur stdDeviation="12.35286"/>
+</filter>
+<linearGradient id="linearGradient5381">
+<stop offset="0" stop-color="#ecdc76"/>
+<stop offset="1" stop-color="#ddae0a"/>
+</linearGradient>
+<linearGradient gradientUnits="userSpaceOnUse" id="linearGradient2903" x1="350.4133" x2="591.76715" xlink:href="#linearGradient5381"/>
+<linearGradient gradientUnits="userSpaceOnUse" id="linearGradient2905" x1="386.8765" x2="535.16248" xlink:href="#linearGradient5381" y1="410.21475" y2="414.37616"/>
+</defs>
+<g transform="translate(-340.82922,-312.50731)">
+<g transform="translate(13.68106,-14.40275)">
+<path d="m351.03231,362.87902h215.11584v190.031l25,10v75l-25,10v10h-215.11584v-295.031z" fill="url(#linearGradient2903)" stroke="#000" stroke-width="1.23802"/>
+<path d="m-284.60498,562.36224h189.73665v295.03101h-189.73665z" filter="url(#filter5354)" opacity=".44681" transform="matrix(.95439,.31623,0,1,642.26211,-109.45222)"/>
+<path d="m370.14267,245.86067c63.24555,0 101.19288,42 164.43843,42v295.03101c-63.24555,0-101.19288-42-164.43843-42v-295.03101z" fill="url(#linearGradient2905)" stroke="#000" stroke-width="1.16269" transform="matrix(.94868,.31623,0,1,0,0)"/>
+</g>
+</g>
+</svg>

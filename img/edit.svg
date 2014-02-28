@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<linearGradient>
+<stop offset="0"/>
+<stop offset="1" stop-color="#fff"/>
+</linearGradient>
+</defs>
+<path d="m6.67859,5.11651h46.74473a2,2 0 0,1 2,2v46.38484a2,2 0 0,1 -2,2h-46.74473a2,2 0 0,1 -2-2v-46.38484a2,2 0 0,1 2-2" fill="#ccc" fill-rule="evenodd" stroke="#4c4c4c" stroke-linejoin="round" stroke-width="3.00127" transform="matrix(.832981,.000000,.000000,.832981,-.379281,10.43050)"/>
+<path d="m8.31443,23.25506h32.07678" fill="none" stroke="#4c4c4c" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"/>
+<path d="m8.31443,31.67652h32.07678" fill="none" stroke="#4c4c4c" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"/>
+<path d="m8.31443,40.09799h32.07678" fill="none" stroke="#4c4c4c" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"/>
+<path d="m8.26623,48.51945h17.78357" fill="none" stroke="#4c4c4c" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"/>
+<path d="m48.0974,30.86281-12.89689,9.38348 7.94665-13.81769 4.95023,4.43421z" fill="#595959" fill-rule="evenodd" stroke="#333" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.16474" transform="matrix(.789955,.000000,.000000,.789955,-7.510137,11.84079)"/>
+<path d="m-56.32928,9.38724h6.54628v47.1332h-6.54628z" fill="#b3b3b3" fill-rule="evenodd" stroke="#333" stroke-linecap="round" stroke-linejoin="round" stroke-width="3.16474" transform="matrix(-.585893,-.529867,.529867,-.585893,-7.510137,11.84079)"/>
+<path d="m61.96634,18.72622a.6203,.6203 0 1,0 -1.2406,0 .6203,.6203 0 1,0 1.24056-2e-005l-.62026,2e-005z" fill="#333" fill-rule="evenodd" stroke="#333" stroke-width="2.33736" transform="matrix(-.793285,-.717427,.717427,-.793285,58.05658,99.66090)"/>
+<path d="m-54.66413,56.37362h3.34693a2.05792,2.02935 0 0,1 2.05792,2.02935 2.05792,2.02935 0 0,1 -2.05792,2.02935h-3.34693a2.05792,2.02935 0 0,1 -2.05792-2.02935 2.05792,2.02935 0 0,1 2.05792-2.02935" fill="#ccc" fill-rule="evenodd" stroke="#333" stroke-width="3.16474" transform="matrix(-.585893,-.529867,.529867,-.585893,-7.510137,11.84079)"/>
+</svg>
