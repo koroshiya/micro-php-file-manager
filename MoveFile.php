@@ -28,9 +28,12 @@ if (isset($_POST['file']) && !is_dir($_POST['file'])) {
                         if (file_exists($dest) && is_dir($dest)){
                             require_once('ProcessFile.php');
                             if (moveFile($file, $dest, $overwrite)){
-                                $dest .= "/" . basename($file);
+                                $file = basename($file);
+                                $dest = basename($dest) . "/" . $file;
                                 finishPrematurely("Moved $file to $dest");
                             }else{
+                                $file = basename($file);
+                                $dest = basename($dest) . "/" . $file;
                                 printError("Failed to move $file to $dest");
                             }
                         }else{
@@ -46,9 +49,12 @@ if (isset($_POST['file']) && !is_dir($_POST['file'])) {
                         if (file_exists($dest) && is_dir($dest)){
                             require_once('ProcessFile.php');
                             if (copyFile($file, $dest, $overwrite)){
-                                $dest .= "/" . basename($file);
+                                $file = basename($file);
+                                $dest = basename($dest) . "/" . $file;
                                 finishPrematurely("Copied $file to $dest");
                             }else{
+                                $file = basename($file);
+                                $dest = basename($dest) . "/" . $file;
                                 printError("Failed to copy $file to $dest");
                             }
                         }else{
