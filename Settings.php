@@ -7,7 +7,8 @@ DEFINE(dbUser, 'root');
 DEFINE(dbPass, 'toor');
 DEFINE(dbName, 'Mover');
 
-DEFINE(loginRequired, false);
+DEFINE(loginRequired, true);
+DEFINE(displayFolders, true);
 
 DEFINE(supportedFormats, 'zip;rar;html');
 /*
