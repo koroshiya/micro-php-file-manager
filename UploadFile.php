@@ -21,8 +21,8 @@ if (isset($_FILES['upload'])) {
 	<!--Name of file to upload: <br />-->
 
 	<form enctype="multipart/form-data" action="index.php" method="post">
-        <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
-        <input type="file" name="upload" /><br />
+        <input type="hidden" name="MAX_FILE_SIZE" value="30000000" />
+        <input type="file" name="upload" id="upload" /><br />
         <button name="action" type="submit" value="upload" class="upload-button">Upload file</button>
     </form>
 </div></div>
