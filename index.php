@@ -20,21 +20,21 @@ if (isset($_POST['username']) && isset($_POST['password'])){
     }else{
         $valid = login($username, $password);
         if ($valid){
-            $_SESSION['authorized'] = $valid == '-2' ? '-2' : $username;
+            $_SESSION['MPFM_authorized'] = $valid == '-2' ? '-2' : $username;
             $_POST['company'] = "All";
         }
     }
 }
 
 if (isset($_POST['action']) && $_POST['action'] === "logout"){
-    $_SESSION['authorized'] = null;
+    $_SESSION['MPFM_authorized'] = null;
 }
 
 require_once('./header.php');
 require_once('./Settings.php');
 global $connection;
 
-if (isset($_SESSION['authorized']) || !loginRequired){
+if (isset($_SESSION['MPFM_authorized']) || !loginRequired){
     if(isset($_FILES['upload']) || isset($_POST['action']) && $_POST['action'] === "upload"){
         require_once('./UploadFile.php');
     }else{

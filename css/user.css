@@ -60,3 +60,22 @@
     font-size: 1.17em;
     font-weight:bold;
 }
+
+#dialogform{
+    border: 1px solid #000000;
+    border-radius: 9px;
+    padding: 5px;
+    top: 50%;
+    margin: -110pt 0 0 0px;
+    position: relative;
+    width: 400px;
+}
+
+#submit-btn{
+    float: left;
+    width: 90px;
+}
+
+#FileInput{
+    float: left;
+}

@@ -16,8 +16,10 @@
         <link rel="stylesheet" href="css/main.min.css">
         <link rel="stylesheet" href="css/user.css">
         <script src="js/vendor/modernizr-2.6.2.min.js" async defer></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+        <script src="js/vendor/jquery-form.min.js" async defer></script>
     <?php
-        if (isset($_SESSION['authorized']) || !loginRequired){
+        if (isset($_SESSION['MPFM_authorized']) || !loginRequired){
     ?>
     </head>
     <body style="margin-top:37px;">

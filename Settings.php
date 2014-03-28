@@ -1,6 +1,6 @@
 <?php
 
-if (!defined('MPFM_INDEX')){die('You must access this through the root index!');}
+if (!MPFM_INDEX){die('You must access this through the root index!');}
 
 DEFINE('host', 'localhost');
 DEFINE('dbUser', 'root');
@@ -20,7 +20,7 @@ DEFINE('supportedFormats', 'zip;rar;html');
 */
 
 DEFINE('basedir', dirname(__FILE__) . '/'); //source directory; contains files to be manipulated
-DEFINE('dest', basedir . 'workspace/'); //default target directory; target of copy, move, etc. operations
+DEFINE('dest', basedir . 'uploadDir/'); //default target directory; target of copy, move, etc. operations
 DEFINE('uploaddir', '/tmp/');
 
 ?>

@@ -1,34 +1,58 @@
 <?php
 if (!defined('MPFM_INDEX')){die('You must access this through the root index!');}
+?>
+<center style="display:inline;">
+<div id="dialogform">
+	<form action="ajax/uploadFile.php" method="post" enctype="multipart/form-data" id="MyUploadForm">
+	<input name="FileInput" id="FileInput" type="file" /><br /><br />
+	<div id="progressbox">
+		<div id="progressbar"></div>
+		<div id="statustxt">0%</div>
+	</div><br />
+	<input type="submit" id="submit-btn" value="Upload" /><br /><br />
+	<div id="output"></div>
+	</form>
+</div>
+</center>
 
-echo "<div style=\"top:50%;margin: -110pt 0 0 0px;position:relative;\">";
-
-if (isset($_FILES['upload'])) {
-	require_once('./ProcessFile.php');
-	if (uploadFile('upload', uploaddir)){
-		echo '<p><em>File uploaded successfully!</em></p>';
-	}else{
-		echo 'File upload failed';
+<script type="text/javascript">
+	$('#MyUploadForm').submit(function(evt) {
+		evt.preventDefault();
+	    $(this).ajaxSubmit({
+		    target: '#output',   // target element(s) to be updated with server response
+		    beforeSubmit: beforeSubmit,  // pre-submit callback
+		    success: afterSuccess,  // post-submit callback
+		    uploadProgress: OnProgress, //upload progress callback
+		    resetForm: false        // reset the form after successful submit
+		});
+	    return false;
+	});
+	function beforeSubmit(){
+		if (!(window.File && window.FileReader && window.FileList && window.Blob)){
+	       alert("Your browser does not support this feature.");
+	       return false;
+	    }else{
+	    	var uFile = $('#FileInput')[0].files[0];
+	    	var fsize = uFile.size; //get file size
+        	var ext = uFile.name.split('.').pop().toLowerCase();
+			if($.inArray(ext, ['zip','rar']) == -1) {
+			    $("#output").html("<b>"+ext+"</b><br />Unsupported file type!");
+			    return false;
+			}else if (fsize>104857600){ //100MB limit
+	        	alert("<b>"+fsize +"</b>File is too big. It should be less than 100 MB.");
+	        	return false
+	    	}
+	    }
 	}
-    echo "<a href=\"index.php\">Return to index</a>";
-}else{
-
-?>
-
-<div class="upload-form">
-	<span class="h3">Target directory:</span><br />
-	<?php echo dest; ?><br /><br /><br /><br />
-	<!--Name of file to upload: <br />-->
-
-	<form enctype="multipart/form-data" action="index.php" method="post">
-        <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
-        <input type="file" name="upload" /><br />
-        <button name="action" type="submit" value="upload" class="upload-button">Upload file</button>
-    </form>
-</div></div>
-
-<?php
-
-}
-
-?>
+	function OnProgress(event, position, total, percentComplete){
+	    $('#progressbox').show();
+	    $('#progressbar').width(percentComplete + '%') //update progressbar percent complete
+	    $('#statustxt').html(percentComplete + '%'); //update status text
+	    if(percentComplete>50){
+	        $('#statustxt').css('color','#000'); //change status text to white after 50%
+	    }
+	}
+	function afterSuccess(){
+		$('#statustxt').html("100% - <a href=\"index.php\">Return to index</a>");
+	}
+</script>

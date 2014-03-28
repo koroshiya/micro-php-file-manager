@@ -2,8 +2,8 @@
 
 if (!defined('MPFM_INDEX')){die('You must access this through the root index!');}
 
-if (isset($_SESSION['authorized'])){
-    $_SESSION['authorized'] = null;
+if (isset($_SESSION['MPFM_authorized'])){
+    $_SESSION['MPFM_authorized'] = null;
 }
 
 ?>
