@@ -25,7 +25,7 @@ if(isset($_FILES["FileInput"])&&$_FILES["FileInput"]["error"]==UPLOAD_ERR_OK){
         die("File size is too big!");
     }
 
-    $File_Name          = strtolower($_FILES['FileInput']['name']);
+    $File_Name          = $_FILES['FileInput']['name'];
     
     $ext = strtolower(substr($File_Name, strrpos($File_Name, '.')));
     $formats = preg_split('/;/', supportedFormats, -1, PREG_SPLIT_NO_EMPTY);
