@@ -1,7 +1,7 @@
 <?php
 if (!defined('MPFM_INDEX')){die('You must access this through the root index!');}
 ?>
-<center style="display:inline;">
+<center style="padding-top:300px;">
 <div id="dialogform">
 	<form action="ajax/uploadFile.php" method="post" enctype="multipart/form-data" id="MyUploadForm">
 	<input name="FileInput" id="FileInput" type="file" /><br /><br />
